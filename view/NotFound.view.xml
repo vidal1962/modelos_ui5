@@ -1,0 +1,11 @@
+<mvc:View
+   xmlns="sap.m"
+   controllerName="cristiano1.vidal.walkthrough.controller.NotFound"
+   xmlns:mvc="sap.ui.core.mvc">
+   <MessagePage
+	  showNavButton="true"
+	  navButtonPress="onNavBack"
+      title="Erro"
+      text="Pagina não encontrada"
+      description="Verifique o endereço digitado"/>
+</mvc:View>

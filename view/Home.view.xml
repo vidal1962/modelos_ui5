@@ -1,0 +1,71 @@
+<mvc:View
+   xmlns="sap.m"
+   controllerName="cristiano1.vidal.walkthrough.controller.Home"
+   xmlns:l="sap.ui.layout"
+   xmlns:core="sap.ui.core"
+   xmlns:mvc="sap.ui.core.mvc">
+	
+	<Page title="Monitor de Informações" class="sapUiResponsiveContentPadding">
+      <content>
+	
+	<IconTabBar id="idIconTabBarFiori2" upperCase="true" expanded="{device>/isNoPhone}"
+	selectedKey="key2"
+    class="sapUiResponsiveContentPadding">
+    <items>
+      <IconTabFilter text="Info"  key="key1">
+        <content>
+
+		   <Text text="{i18n>msgInicialText}"/>
+		   
+		   <Button
+		      text="{i18n>msgButtonText}"
+		      press=".onShowHello"/>
+		      
+		      <Panel headerText="{i18n>panelCadastroText}: {pessoa>/nome} {pessoa>/sobrenome} " class="sapUiResponsiveMargin" width="auto">
+			    <content>
+			      <Label text="Nome" class="sapUiSmallMargin" />
+			      <Input value="{pessoa>/nome}" valueLiveUpdate="true" width="200px" enabled="{pessoa>/habilitado}" />
+			      <Label text="Sobrenome" class="sapUiSmallMargin" />
+			      <Input value="{pessoa>/sobrenome}" valueLiveUpdate="false" width="200px" enabled="{pessoa>/habilitado}" />
+			      <CheckBox selected="{pessoa>/habilitado}" text="Habilitado" />
+			    </content>
+			  </Panel> 
+			  
+			  <Panel headerText="Detalhes Endereço" class="sapUiResponsiveMargin" width="auto">
+		    <content>
+		      	<l:VerticalLayout>
+		          <Label class="sapUiSmallMargin" text="Endereço:" />
+		          <Text class="sapUiSmallMarginBegin" text="{pessoa>/endereco/rua}" /> 
+		          <Text class="sapUiSmallMarginBegin" text="{pessoa>/endereco/cidade}" />     
+		          <Text class="sapUiSmallMarginBegin" text="{pessoa>/endereco/cep}" />     
+		          <Text class="sapUiSmallMarginBegin" text="{pessoa>/endereco/pais}" />                           
+		        </l:VerticalLayout>   
+		    </content>
+		  </Panel>
+		  
+		  <core:ExtensionPoint name="HomePanelInfoTab" />
+  
+		</content>
+	    </IconTabFilter>
+	    
+	    <IconTabFilter text="Vendas" key="key2">
+        <content>
+          <core:Fragment fragmentName="cristiano1.vidal.walkthrough.view.ListaVendas" type="XML" />
+        </content>
+      </IconTabFilter>
+      
+      
+       <IconTabFilter text="Produtos" key="key3">
+        <content>
+          <core:Fragment fragmentName="cristiano1.vidal.walkthrough.view.ListaProdutos" type="XML" />
+        </content>
+      </IconTabFilter>
+      
+      <core:ExtensionPoint name="HomeIconTabFilter" /> 
+	</items>
+	</IconTabBar>
+	
+	</content>
+  </Page>
+
+</mvc:View>

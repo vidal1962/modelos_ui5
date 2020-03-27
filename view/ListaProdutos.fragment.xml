@@ -1,0 +1,20 @@
+<core:FragmentDefinition
+   xmlns="sap.m"
+   xmlns:l="sap.ui.layout"
+   xmlns:core="sap.ui.core" >
+   <List
+        headerText="Lista de Produtos"
+        growing="true"
+		growingThreshold="5"
+		growingScrollToLoad="false"
+        class="sapUiResponsiveMargin"
+        width="auto"
+        items="{
+            path: 'produtos>/Products',
+			factory: '.productListFactory'
+            }" >
+
+   </List>
+
+
+</core:FragmentDefinition> 

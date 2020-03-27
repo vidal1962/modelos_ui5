@@ -1,0 +1,103 @@
+<core:FragmentDefinition
+   xmlns="sap.m"
+   xmlns:l="sap.ui.layout"
+   xmlns:core="sap.ui.core" >
+   <List
+        headerText="Lista de Vendas"
+        growing="true"
+		growingThreshold="4"
+		growingScrollToLoad="false"
+        class="sapUiResponsiveMargin"
+        width="auto"
+        items="{
+            path: '/VendaSet',
+            parameters:{
+                expand: 'cliente'
+            },
+            sorter : {
+            path: 'IDVenda'
+         }
+            }"  >
+		<headerToolbar>
+			<Toolbar>
+				<ToolbarSpacer />
+
+				<Button
+					icon="sap-icon://detail-view"
+					press="onShowDetails" />				
+			</Toolbar>
+		</headerToolbar>
+        <items>
+        	<core:ExtensionPoint name="VendaItemList" >
+            <StandardListItem
+            press=".onVendaSelected"
+		    type="Active"
+			title="{Descricao}"
+			info="{
+                    parts: [{path: 'ValorLiquido'}, {path: 'view>/moeda'}],
+                    type: 'sap.ui.model.type.Currency',
+                    formatOptions: {
+                        showMeasure: false
+                    }
+                }"
+			infoState="{= ${ValorLiquido} > 50 ? 'Error' : 'Success' }" />
+			</core:ExtensionPoint>
+      </items>
+   </List>
+   
+   <Panel id="vendaDetailsPanel" headerText="Detalhes Venda" class="sapUiResponsiveMargin" width="auto">
+   		<headerToolbar>
+			<Toolbar height="3rem" style="Clear">
+				<Title text="Detalhes Documento de  Venda" />
+				<ToolbarSpacer />
+				<Button text="Salvar Monitorando modelo" type="Emphasized"
+                    press="onAtualizarVendasMonit" />				
+                <Button text="Salvar obtendo dados" type="Ghost"
+                    press="onAtualizarVendas" />				
+			</Toolbar>
+		</headerToolbar>
+    <l:Grid defaultSpan="L3 M6 S12" containerQuery="true">
+        <Label text="ID :" />
+        <Input enabled="false"
+               value="{
+                   path: 'IDVenda',
+                   formatter: '.formatter.idText'
+                   }" />
+
+        <Label text="Descrição:" />
+        <Input value="{Descricao}" />
+
+        <Label text="Data de Criação:" />
+        <Input enabled="false"
+                value="{
+				path: 'DataCriacao',
+				type: 'sap.ui.model.type.Date',
+				formatOptions: {
+					style: 'short'
+                    }
+				}" />
+
+        <Label text="Cliente:" />
+        <Input value="{Cliente}" />
+
+        <Label text="Valor Líquido:" />
+        <Input value="{
+                    parts: [{path: 'ValorLiquido'}, {path: 'view>/moedaEstrangeira'}],
+                    type: 'sap.ui.model.type.Currency',
+                    formatOptions: {
+                        showMeasure: false
+                    }
+                }" />
+
+        <Label text="Criado Por:" />
+        <Input 
+        value="{
+            path: 'CriadoPor',
+            formatter: '.formatter.userText'
+            }" />
+
+        <Label text="Nome Cliente:" />
+        <Input value="{cliente/Nome}" />
+    </l:Grid>    
+  </Panel>
+</core:FragmentDefinition> 
